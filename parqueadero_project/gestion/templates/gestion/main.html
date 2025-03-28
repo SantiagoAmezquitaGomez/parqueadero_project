@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Parqueaderos - Principal</title>
+</head>
+<body>
+    <h1>Bienvenido, {{ nombre_usuario }} (Rol: {{ rol }})</h1>
+    <p><a href="{% url 'logout' %}">Cerrar Sesión</a></p>
+    <hr>
+    {% if rol|upper == "ADMINISTRADOR" %}
+        <h2>Opciones de Administrador</h2>
+        <ul>
+            <li><a href="#">Gestionar Usuarios (CRUD)</a></li>
+            <li><a href="#">Reportes Generales</a></li>
+            <li><a href="#">Configuración de Tarifas</a></li>
+        </ul>
+    {% endif %}
+    {% if rol|upper == "ADMINISTRADOR" or rol|upper == "OPERADOR" %}
+        <h2>Opciones de Operador</h2>
+        <ul>
+            <li><a href="#">Registrar Entrada de Vehículo</a></li>
+            <li><a href="#">Registrar Salida de Vehículo</a></li>
+            <li><a href="#">Generar Factura</a></li>
+        </ul>
+    {% endif %}
+    {% if rol|upper == "USUARIO_NORMAL" %}
+        <h2>Opciones de Usuario Normal</h2>
+        <ul>
+            <li><a href="#">Mis Reservas</a></li>
+            <li><a href="#">Mis Facturas</a></li>
+        </ul>
+    {% endif %}
+</body>
+</html>
